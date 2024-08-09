@@ -1,0 +1,34 @@
+<div class="header">
+  <div class="navbar">
+    <ion-icon name="chevron-back" routerLink="/user/home/contact"></ion-icon> 
+    <span>{{ currentRecipient }}</span>
+  </div>
+  <ion-thumbnail (click)="advocateProfile()">
+    <img src="https://ionicframework.com/docs/img/demos/avatar.svg">
+  </ion-thumbnail>
+</div>
+
+<ion-content>
+  <ion-list>
+    <ng-container *ngFor="let group of messages">
+      <p class="ion-text-center">{{ group.date }}</p>
+      <ng-container *ngFor="let message of group.messages">
+        <ion-item lines="none">
+          <ion-label [slot]="message.sender === currentUser ? 'end' : 'start'" [class]="message.sender === currentUser ? 'meText' : 'otherText'">
+            <p>{{ message.message }}</p>
+            <span>{{ message.timestamp }}</span>
+          </ion-label>
+        </ion-item>
+      </ng-container>
+    </ng-container>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-item lines="none">
+    <ion-input #messageInput placeholder="Message"></ion-input>
+    <ion-button shape="round" (click)="sendMessage(messageInput.value)">
+      <ion-icon slot="icon-only" name="send"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-footer>
