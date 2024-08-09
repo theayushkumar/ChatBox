@@ -1,0 +1,7 @@
+{
+  "name": "ChatBox",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
